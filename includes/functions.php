@@ -4,7 +4,7 @@ session_start();
 /**
  * Redirige a la página indicada si el usuario NO está autenticado.
  */
-function ensure_logged_in(string $redirect = 'login.php'): void
+function ensure_logged_in(string $redirect = '../public/login.php'): void
 {
     if (!isset($_SESSION['user_id'])) {
         header("Location: $redirect");
