@@ -1,10 +1,10 @@
 <?php
 /* ---------- 1. Parámetros de conexión ----------
    Ajusta estos valores con los de tu entorno.  */
-$host   = 'localhost';
+$host   = 'localhost:8080';
 $dbname = 'NeoVibra';
-$user   = 'tu_usuario';
-$pass   = 'tu_contraseña';
+$user   = 'root';
+$pass   = 'rootpassword';
 $charset = 'utf8mb4';
 
 /* ---------- 2. Conexión PDO ----------
