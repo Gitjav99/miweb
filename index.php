@@ -1,6 +1,6 @@
 <?php
 /* ---------- 1. Parámetros de conexión ----------
-   Ajusta estos valores con los de tu entorno.  */
+   Cambia estos valores con los datos de tu entorno. */
 $host   = 'localhost';
 $dbname = 'NeoVibra';
 $user   = 'root';
@@ -8,22 +8,35 @@ $pass   = 'rootpassword';
 $charset = 'utf8mb4';
 
 /* ---------- 2. Conexión PDO ----------
-   PDO nos permite usar sentencias preparadas de forma sencilla. */
+   Con PDO podemos capturar el error con una excepción. */
 $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
 $options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,      // ¡¡importante!!
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
 ];
+
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (PDOException $e) {
-    http_response_code(500);
-    echo "<h1>Error de conexión</h1>";
-    exit;
+    /* ---------- 3. Error de conexión ----------
+       Ahora mostramos el mensaje real de MySQL. */
+    http_response_code(500);                       // Código HTTP 500 – Internal Server Error
+    echo '<!DOCTYPE html><html><head><meta charset="utf‑8"><title>¡Error de conexión!</title></head>';
+    echo '<body style="font-family:Arial,Helvetica,sans-serif;margin:2rem;">';
+    echo '<h1>❌ Error al conectar con la base de datos</h1>';
+    echo '<p><strong>Mensaje de MySQL:</strong> '.htmlspecialchars($e->getMessage()).'</p>';
+    echo '<p>Si ves “host not found” o “No such file or directory” intenta revisar la configuración del servidor MySQL (puerto, host, permisos).<br>';
+    echo 'Para solucionar el problema, puedes comprobar lo siguiente:</p>';
+    echo '<ul><li>El host es correcto (ej.: localhost o 127.0.0.1).</li>';
+    echo '<li>El usuario y contraseña existen y tienen permisos en la BD.</li>';
+    echo '<li>El puerto está abierto (el predeterminado es 3306).</li>';
+    echo '<li>El servicio MySQL está corriendo.</li></ul>';
+    echo '</body></html>';
+    exit;   // Termina el script – no seguimos intentando consultar.
 }
 
-/* ---------- 3. Consulta ----------
-   Un JOIN simple para obtener el chat y el usuario.  */
+/* ---------- 4. Consulta ----------
+   Si llegamos aquí, la conexión fue exitosa y seguimos con el resto del script. */
 $sql = "
     SELECT
         m.id,
@@ -61,13 +74,10 @@ $mensajes = $stm->fetchAll();
     <p>No hay mensajes disponibles.</p>
 <?php else: ?>
     <?php
-    /* Agrupar mensajes por chat para mostrar un encabezado de chat */
     $chatActual = null;
     foreach ($mensajes as $msg):
         if ($msg['chat'] !== $chatActual):
-            if ($chatActual !== null): /* cerrar div del chat anterior */
-                echo '</div>';
-            endif;
+            if ($chatActual !== null): echo '</div>'; endif;
             $chatActual = $msg['chat'];
             echo "<div class='chat'><h2>Chat: ".htmlspecialchars($chatActual)."</h2>";
         endif;
@@ -82,7 +92,7 @@ $mensajes = $stm->fetchAll();
             </div>
         </div>
     <?php endforeach; ?>
-    </div> <!-- cerrar último chat -->
+    </div>
 <?php endif; ?>
 
 </body>
