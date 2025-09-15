@@ -9,10 +9,10 @@ ini_set('display_errors', 1);
 // --- Configuración por defecto (se pueden pasar parámetros GET para probar otras opciones) ---
 // Ej: http://.../test_db.php?host=db&port=3306&user=admin&pass=admin123&db=mi_base
 $host = isset($_GET['host']) ? $_GET['host'] : (getenv('DB_HOST') ?: (getenv('MYSQL_HOST') ?: 'db'));
-$port = isset($_GET['port']) ? (int)$_GET['port'] : (getenv('DB_PORT') ?: 3306);
-$db   = isset($_GET['db'])   ? $_GET['db'] : (getenv('MYSQL_DATABASE') ?: (getenv('DB_NAME') ?: 'testdb'));
+$port = isset($_GET['port']) ? (int)$_GET['port'] : (getenv('DB_PORT') ?: 8081);
+$db   = isset($_GET['db'])   ? $_GET['db'] : (getenv('MYSQL_DATABASE') ?: (getenv('DB_NAME') ?: 'NeoVibra'));
 $user = isset($_GET['user']) ? $_GET['user'] : (getenv('MYSQL_USER') ?: (getenv('DB_USER') ?: 'root') );
-$pass = isset($_GET['pass']) ? $_GET['pass'] : (getenv('MYSQL_PASSWORD') ?: getenv('MYSQL_ROOT_PASSWORD') ?: getenv('DB_PASS') ?: '');
+$pass = isset($_GET['pass']) ? $_GET['pass'] : (getenv('MYSQL_PASSWORD') ?: getenv('MYSQL_ROOT_PASSWORD') ?: getenv('DB_PASS') ?: 'rootpassword');
 
 function mask($s){
     if ($s === '' || $s === null) return '(empty)';
