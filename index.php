@@ -1,7 +1,7 @@
 <?php
 /* ---------- 1. Parámetros de conexión ----------
    Cambia estos valores con los datos de tu entorno. */
-$host   = 'localhost:8081';
+$host   = 'localhost:3306';
 $dbname = 'NeoVibra';
 $user   = 'root';
 $pass   = 'rootpassword';
