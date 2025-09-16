@@ -1,7 +1,7 @@
 <?php
 /* ---------- 1. Parámetros de conexión ----------
    Cambia estos valores con los datos de tu entorno. */
-$host   = '172.18.0.4:3306';
+$host   = '172.18.0.2:3306';
 $dbname = 'NeoVibra';
 $user   = 'neoroot';
 $pass   = 'NeoOllama';
