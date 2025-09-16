@@ -18,14 +18,15 @@ if (!$usuario || !$password) {
 $stmt = $pdo->prepare("SELECT id, nombre, password_hash FROM usuario WHERE nombre = :nombre");
 $stmt->execute(['nombre' => $usuario]);
 $user = $stmt->fetch();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (!$user) {
-    die('Credenciales inválidas.'+$user); // Evita revelar si el usuario existe
+    die('Credenciales inválidas.'+$result); // Evita revelar si el usuario existe
 }
 
 // 2️⃣ Verificar la contraseña
 if (!password_verify($password, $user['password_hash'])) {
-    die("Credenciales inválidas.  $user  $password");
+    die("Contraseña inválida.  $result  $password");
 }
 
 // 3️⃣ Login correcto – puedes iniciar sesión (ej. $_SESSION)
