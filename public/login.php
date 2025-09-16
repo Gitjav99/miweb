@@ -25,7 +25,7 @@ if (!$user) {
 
 // 2️⃣ Verificar la contraseña
 if (!password_verify($password, $user['password_hash'])) {
-    die('Credenciales inválidas.  '+$user+"   "+$password);
+    die("Credenciales inválidas.  $user  $password");
 }
 
 // 3️⃣ Login correcto – puedes iniciar sesión (ej. $_SESSION)
