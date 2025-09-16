@@ -21,7 +21,8 @@ $user = $stmt->fetch();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (!$user) {
-    die('Credenciales inválidas.'+$result); // Evita revelar si el usuario existe
+    die("Credenciales inválidas. $result"); // Evita revelar si el usuario existe
+
 }
 
 // 2️⃣ Verificar la contraseña
