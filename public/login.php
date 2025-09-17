@@ -69,7 +69,7 @@ if (!$user) {
     <h1>El usuario no existe</h1>
     <div class="buttons">
         <button class="back" onclick="history.back()">Volver Atrás</button>
-        <button class="register" onclick="window.location.href=\'./register.php\'">Registrarse</button>
+        <button class="register" onclick="window.location.href=\'../register.html\'">Registrarse</button>
     </div>
 </body>
 </html>
