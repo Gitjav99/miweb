@@ -20,13 +20,12 @@ $stmt->execute(['nombre' => $usuario]);
 $user = $stmt->fetch();
 
 if (!$user) {
-    die("Credenciales inválidas. $user[id] -- $user[nombre] -- $user[password_hash]"); // Evita revelar si el usuario existe
-
+    die("<h1>El usuario no existe.</h1>"); // Evita revelar si el usuario existe
 }
 
 // 2️⃣ Verificar la contraseña
 if (!password_verify($password, $user['password_hash'])) {
-    die("Contraseña inválida. $user[id] -- $user[nombre] -- $user[password_hash] -- $password");
+    die("<h1>Contraseña inválida. $user[id] -- $user[nombre] -- $user[password_hash] -- $password</h1>");
 }
 
 // 3️⃣ Login correcto – puedes iniciar sesión (ej. $_SESSION)
