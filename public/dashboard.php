@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 <html lang="es">
 <head><meta charset="UTF-8"><title>Dashboard</title></head>
 <body>
-<h1>¡Bienvenido, <?= htmlspecialchars($_SESSION['user_email']); ?>!</h1>
+<h1>¡Bienvenido, <?= htmlspecialchars($_SESSION['user_usuario']); ?>!</h1>
 <p>Esta es una página protegida.</p>
 <a href="logout.php">Cerrar sesión</a>
 </body>
