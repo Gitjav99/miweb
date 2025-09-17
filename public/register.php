@@ -52,8 +52,7 @@ try {
 
     // Registro exitoso: opcional iniciar sesión directamente
     session_start();
-    $_SESSION['user_id']   = $pdo->lastInsertId();
-    $_SESSION['user_usuario']= $usuario;
+    $_SESSION['nombre_usuario']= $usuario;
 
     // Redirigir a la página de bienvenida/protegida
     header('Location: dashboard.php');
