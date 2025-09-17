@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Usuario</title>
+    <style>
+        body{font-family:Arial,Helvetica,sans-serif;background:#fafafa;padding:2rem;}
+        .form-wrapper{max-width:400px;margin:auto;background:#fff;padding:2rem;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,.1);}
+        label{display:block;margin-bottom:.5rem;font-weight:bold;}
+        input{width:100%;padding:.5rem;margin-bottom:1rem;border:1px solid #ddd;border-radius:4px;}
+        button{width:100%;padding:.5rem;background:#28a745;color:#fff;border:none;border-radius:4px;cursor:pointer;}
+        button:hover{background:#218838;}
+        .error{color:#dc3545;margin-bottom:1rem;}
+        .success{color:#28a745;margin-bottom:1rem;}
+        a{color:#007bff;}
+    </style>
+</head>
+<body>
+    <div class="form-wrapper">
+        <h2>Crear una cuenta</h2>
+
+        <div id="msg"></div>
+
+        <form id="regForm" action="./public/register.php" method="post" novalidate>
+            <label for="usuario">Nombre usuario</label>
+            <input type="text" id="usuario" name="usuario">
+
+            <label for="pwd">Contraseña</label>
+            <input type="password" id="pwd" name="password" required minlength="6" placeholder="Mínimo 6 caracteres">
+
+            <label for="pwdConfirm">Confirmar contraseña</label>
+            <input type="password" id="pwdConfirm" name="password_confirm" required minlength="6">
+
+            <button type="submit">Registrarse</button>
+        </form>
+
+        <p>¿Ya tienes una cuenta? <a href="login.html">Inicia sesión</a></p>
+    </div>
+
+    <script>
+        // Validación de cliente (opcional, mejora UX)
+        document.getElementById('regForm').addEventListener('submit', function (e) {
+            const pwd  = document.getElementById('pwd').value;
+            const cpwd = document.getElementById('pwdConfirm').value;
+            if (pwd !== cpwd) {
+                e.preventDefault();
+                document.getElementById('msg').innerHTML = '<div class="error">Las contraseñas no coinciden.</div>';
+            }
+        });
+    </script>
+</body>
+</html>
