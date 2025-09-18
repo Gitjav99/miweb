@@ -6,7 +6,7 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-require 'db.php';
+require '../includes/db.php';
 
 // 1️⃣  Obtener los chats del usuario (o todos si lo prefieres)
 $user_id = $_SESSION['user_id'];
