@@ -15,7 +15,7 @@ $pwd_conf = $_POST['password_confirm'] ?? '';
 $errors = [];
 
 if (!$usuario) {
-    $errors[] = 'Correo electrónico inválido.';
+    $errors[] = 'Usuario inválido.';
 }
 if (strlen($password) < 6) {
     $errors[] = 'La contraseña debe tener al menos 6 caracteres.';
@@ -38,7 +38,7 @@ $stmt = $pdo->prepare("SELECT id FROM usuario WHERE nombre = :nombre");
 $stmt->execute(['nombre' => $usuario]);
 if ($stmt->fetch()) {
     echo '<div style="color:#dc3545;margin-bottom:.8rem;">El usuario ya está registrado.</div>';
-    echo '<p><a href="register.html">Volver al registro</a></p>';
+    echo '<p><a href="./register.html">Volver al registro</a></p>';
     exit;
 }
 
