@@ -19,7 +19,7 @@ $sql = "SELECT u.id AS usuario_id,
     c.creado_en AS creado_en,
     m.contenido as contenido
     FROM usuario u INNER JOIN chat_participante cp ON u.id = cp.usuario_id INNER JOIN chat c ON c.id = cp.chat_id INNER JOIN mensaje m on c.id = m.chat_id
-    WHERE u.id = :owner_id
+    WHERE u.id = :owner_id and m.usuario_id!= u.id
     ORDER BY `creado_en` DESC;";
 $stmt = $pdo->prepare($sql);
 $stmt->execute(['owner_id' => $user_id]);
