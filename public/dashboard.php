@@ -16,10 +16,11 @@ $sql = "SELECT u.id AS usuario_id,
     c.titulo AS titulo_chat, 
     cp.rol AS rol_en_chat, 
     cp.invitado_en AS fecha_invitacion, 
-    c.creado_en AS creado_en 
-    FROM usuario u INNER JOIN chat_participante cp ON u.id = cp.usuario_id INNER JOIN chat c ON c.id = cp.chat_id 
-    WHERE u.id = :owner_id 
-    ORDER BY `creado_en` DESC";
+    c.creado_en AS creado_en,
+    m.contenido as contenido
+    FROM usuario u INNER JOIN chat_participante cp ON u.id = cp.usuario_id INNER JOIN chat c ON c.id = cp.chat_id INNER JOIN mensaje m on c.id = m.chat_id
+    WHERE u.id = :owner_id
+    ORDER BY `creado_en` DESC;";
 $stmt = $pdo->prepare($sql);
 $stmt->execute(['owner_id' => $user_id]);
 
@@ -61,6 +62,7 @@ $chats = $stmt->fetchAll();   // array de chats
                     <strong><?= htmlspecialchars($chat['titulo_chat']); ?></strong>
                     <br>
                     <small>Creado el <?= date('d/m/Y H:i', strtotime($chat['creado_en'])); ?></small>
+                    <small><?= htmlspecialchars($chat['contenido']); ?></small>
                     <br>
                     <a href="chat.php?chat_id=<?= (int)$chat['chat_id']; ?>" class="chat-link">Ver chat →</a>
                 </div>
