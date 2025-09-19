@@ -19,7 +19,7 @@
 </head>
 <body>
 <div class="wrapper">
-    <h1>Pronto estará disponible la creación de chats</h1>
+    <h1>Pronto estará disponible la visualización del chat</h1>
 
     <div class="logout"><a href="dashboard.php">Volver atras</a></div>
 </div>
