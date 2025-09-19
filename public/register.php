@@ -29,7 +29,7 @@ if (!empty($errors)) {
     foreach ($errors as $err) {
         echo '<div style="color:#dc3545;margin-bottom:.8rem;">' . htmlspecialchars($err) . '</div>';
     }
-    echo '<p><a href="register.html">Volver al registro</a></p>';
+    echo '<p><a href="../register.html">Volver al registro</a></p>';
     exit;
 }
 
@@ -38,7 +38,7 @@ $stmt = $pdo->prepare("SELECT id FROM usuario WHERE nombre = :nombre");
 $stmt->execute(['nombre' => $usuario]);
 if ($stmt->fetch()) {
     echo '<div style="color:#dc3545;margin-bottom:.8rem;">El usuario ya está registrado.</div>';
-    echo '<p><a href="./register.html">Volver al registro</a></p>';
+    echo '<p><a href="../register.html">Volver al registro</a></p>';
     exit;
 }
 
@@ -60,7 +60,7 @@ try {
 } catch (PDOException $e) {
     // Por seguridad no revelamos detalles internos
     echo '<div style="color:#dc3545;margin-bottom:.8rem;">Error interno. Por favor intenta de nuevo.</div>';
-    echo '<p><a href="register.html">Volver al registro</a></p>';
+    echo '<p><a href="../register.html">Volver al registro</a></p>';
     exit;
 }
 ?>
