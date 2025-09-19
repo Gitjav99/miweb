@@ -62,7 +62,7 @@ $chats = $stmt->fetchAll();   // array de chats
                     <br>
                     <small>Creado el <?= date('d/m/Y H:i', strtotime($chat['creado_en'])); ?></small>
                     <br>
-                    <a href="chat.php?chat_id=<?= (int)$chat['id']; ?>" class="chat-link">Ver chat →</a>
+                    <a href="chat.php?chat_id=<?= (int)$chat['chatid']; ?>" class="chat-link">Ver chat →</a>
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
