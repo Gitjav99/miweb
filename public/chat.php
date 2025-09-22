@@ -1,3 +1,19 @@
+<?php
+require '../includes/db.php';
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: ../login.html');
+    exit;
+}
+$user_id = $_SESSION['user_id'];
+$chatID= $_SESSION['chatID'];
+$sql = "SELECT id, chat_id, usuario_id, contenido, enviado_en
+ FROM mensaje WHERE chat_id = :chat_id and usuario_id != :owner_id ORDER BY enviado_en DESC;";
+$stmt = $pdo->prepare($sql);
+$stmt->execute(['chat_id' => $chatID, 'owner_id' => $user_id]);
+
+$chats = $stmt->fetchAll();   // array de chats
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,7 +36,8 @@
 <body>
 <div class="wrapper">
     <h1>Pronto estará disponible la visualización del chat</h1>
-
+    <small><?= htmlspecialchars($chat['contenido']); ?></small>
+                    <br>
     <div class="logout"><a href="dashboard.php">Volver atras</a></div>
 </div>
 </body>
