@@ -1,3 +1,21 @@
+<?php
+
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: ../login.html');
+    exit;
+}
+
+require '../includes/db.php';
+
+// 1️⃣  Obtener los chats del usuario (o todos si lo prefieres)
+$user_id = $_SESSION['user_id'];
+$sql = "insert into chat (titulo) values ('Nuevo Chat');";
+$stmt = $pdo->prepare($sql);
+$stmt->execute(['owner_id' => $user_id]);
+
+$chats = $stmt->fetchAll();   // array de chats
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>

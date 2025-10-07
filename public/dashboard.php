@@ -56,7 +56,7 @@ $chats = $stmt->fetchAll();   // array de chats
     <div class="chat-list">
         <?php if (empty($chats)): ?>
             <p>No tienes salas creadas todavía.</p>
-        <?php else: ?>
+        <?php else: ?>  
             <?php foreach ($chats as $chat): ?>
                 <div class="chat-item">
                     <strong><?= htmlspecialchars($chat['titulo_chat']); ?></strong>

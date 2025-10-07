@@ -1,6 +1,6 @@
 <?php
 // db.php
-$host   = '172.18.0.3:3306';
+$host   = '172.18.0.2:3306';
 $dbname = 'NeoVibra';
 $user   = 'neoroot';
 $pass   = 'NeoOllama';
